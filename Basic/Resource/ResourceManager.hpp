@@ -36,7 +36,8 @@ struct ResourceManager
     [[nodiscard]] Mem::Allocator& get_allocator() const { return allocator; }
     Basic::GPUResourceManager& get_gpu_resource_manager() { return gpu_resource_manager; }
 
-    ResourceManager(Mem::Allocator& allocator, Basic::RenderDevice& render_device);
+    ResourceManager(Mem::Allocator& allocator, Basic::RenderDevice& render_device,
+        Collections::StringView directory);
     ~ResourceManager();
 
     /*

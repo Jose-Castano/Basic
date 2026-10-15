@@ -15,7 +15,8 @@ Basic::ResourceManager* current_rm;
 namespace Basic
 {
 
-ResourceManager::ResourceManager(Mem::Allocator& allocator, Basic::RenderDevice& render_device)
+ResourceManager::ResourceManager(Mem::Allocator& allocator, Basic::RenderDevice& render_device,
+    Collections::StringView directory)
 : allocator(allocator), resources(allocator, 4),
 gpu_resource_manager(
     {
@@ -27,6 +28,7 @@ gpu_resource_manager(
     }
 )
 {
+    OS::set_current_directory(allocator, directory);
     current_rm = this;
 
     // default resources
