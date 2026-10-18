@@ -35,7 +35,7 @@ struct SceneManager
     ~SceneManager();
 
     void update(f32 dt);
-    void render(Basic::SpriteBatch& sprite_batch);
+    void render(SceneRenderer& scene_renderer);
     void event(const Event& e);
 
     template<typename T, typename... TArgs>

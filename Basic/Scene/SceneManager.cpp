@@ -52,13 +52,13 @@ void SceneManager::update(f32 dt)
     }
 }
 
-void SceneManager::render(Basic::SpriteBatch& sprite_batch)
+void SceneManager::render(SceneRenderer& scene_renderer)
 {
     switch(state)
     {
     case Loaded:
     {
-        current_scene->render(sprite_batch);
+        current_scene->render(scene_renderer);
     }
     break;
     case Transition:

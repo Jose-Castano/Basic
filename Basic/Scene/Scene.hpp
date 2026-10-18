@@ -2,11 +2,18 @@
 #include <Mem/Allocator.hpp>
 #include <input/input.h>
 
-#include <Basic/2D/SpriteBatch.hpp>
-
 
 namespace Basic
 {
+
+struct SpriteBatch;
+struct FrameInfo;
+
+struct SceneRenderer
+{
+    SpriteBatch& sprite_batch;
+    const FrameInfo& frame_info;
+};
 
 struct Scene
 {
@@ -17,7 +24,7 @@ struct Scene
     virtual ~Scene() {}
 
     virtual void update(f32) {}
-    virtual void render(Basic::SpriteBatch&) {}
+    virtual void render(SceneRenderer&) {}
 
     virtual void event(const Event&) {}
 };
