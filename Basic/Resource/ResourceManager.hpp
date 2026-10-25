@@ -48,7 +48,7 @@ struct ResourceManager
     [[nodiscard]] Collections::Result<T*, Error> try_load(Collections::StringView path)
     {
         Collections::Result<Resource*, Error> resource = load_resource(T::Type, T::Specification, path);
-        if (resource)
+        if (!resource.fail())
         {
             return reinterpret_cast<T*>(resource.value());
         }

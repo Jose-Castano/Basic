@@ -1,6 +1,7 @@
 #include "Basic/Resource/ResourceManager.hpp"
 
 #include <IO/File.hpp>
+#include <OS/OS.hpp>
 
 #include "Basic/Core/RenderDevice.hpp"
 #include "Basic/Resource/ResourceManagerInternal.hpp"
@@ -122,7 +123,7 @@ Collections::Result<Resource*, Error> ResourceManager::_load_image(Collections::
         );
     }
 
-    return image;
+    return static_cast<Resource*>(image);
 }
 
 Collections::Result<Resource*, Error> ResourceManager::_load_texture_2d(Collections::StringView path)
@@ -151,14 +152,14 @@ Collections::Result<Resource*, Error> ResourceManager::_load_texture_2d(Collecti
         );
     }
     
-    return tex;
+    return static_cast<Resource*>(tex);
 }
 
 Collections::Result<Resource*, Error> ResourceManager::_load_sound(Collections::StringView path)
 {
     if (resources.has(path))
     {
-        return reinterpret_cast<Sound*>(resources.get(path).resource);
+        return static_cast<Resource*>(resources.get(path).resource);
     }
 
     Sound* new_sound = _create_resource<Sound>();
@@ -173,14 +174,15 @@ Collections::Result<Resource*, Error> ResourceManager::_load_sound(Collections::
         path,
         new_sound
     );
-    return new_sound;
+
+    return static_cast<Resource*>(new_sound);
 }
 
 Collections::Result<Resource*, Error> ResourceManager::_load_font(Collections::StringView path)
 {
     if (resources.has(path))
     {
-        return reinterpret_cast<Font*>(resources.get(path).resource);
+        return static_cast<Resource*>(resources.get(path).resource);
     }
 
     Font* new_font = _create_resource<Font>();
@@ -195,7 +197,8 @@ Collections::Result<Resource*, Error> ResourceManager::_load_font(Collections::S
         path,
         new_font
     );
-    return new_font;
+
+    return static_cast<Resource*>(new_font);
 }
 
 }
