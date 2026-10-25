@@ -11,8 +11,8 @@ struct FrameInfo;
 
 struct SceneRenderer
 {
-    SpriteBatch& sprite_batch;
     const FrameInfo& frame_info;
+    SpriteBatch& sprite_batch;
 };
 
 struct Scene

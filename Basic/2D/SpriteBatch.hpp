@@ -101,8 +101,7 @@ struct SpriteBatch
     void draw_texture_transformed_pivot_centered(const Rect2D& rect, const Transform2D& transform,
         const Rect2D& uv_rect, const Color& color, GPU::TextureViewID texture_view, const Vector2& texture_size, SpriteFilter filter);
 
-    void draw_color_rect(const Rect2D& rect, const Transform2D& transform,
-        const Color& color, SpriteFilter filter);
+    void draw_color_rect(const Rect2D& rect, const Transform2D& transform, const Color& color);
 
     Slice<Batch> get_batches() const;
     Slice<Vertex> get_vertices() const;

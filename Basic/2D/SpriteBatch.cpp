@@ -211,12 +211,11 @@ void SpriteBatch::draw_texture_transformed_pivot_centered(const Rect2D& rect, co
         texture_size, filter);
 }
 
-void SpriteBatch::draw_color_rect(const Rect2D& rect, const Transform2D& transform,
-        const Color& color, SpriteFilter filter)
+void SpriteBatch::draw_color_rect(const Rect2D& rect, const Transform2D& transform, const Color& color)
 {
     draw_texture_transformed_pivot_centered(
         rect, transform, Rect2D(0, 0, 1, 1), color,
-        get_white_texture(), Vector2(1, 1), filter
+        get_white_texture(), Vector2(1, 1), SpriteFilter::Nearest
     );
 }
 
