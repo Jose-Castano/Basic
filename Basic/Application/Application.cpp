@@ -10,8 +10,14 @@
 namespace Basic
 {
 
+static void _default_event_handler(Core::Opaque* user_data, const Event& e)
+{
+    Application* app = user_data->cast<Application*>();
+    app->handle_event(e);
+}
+
 Application::Application(const ApplicationAllocateInfo& alloc_info)
-: data(alloc_info.allocator), window(Window::create())
+: data(alloc_info.allocator), window(alloc_info.allocator, Core::Opaque::from(*this), &_default_event_handler)
 {
     data.program_start = OS::get_time();
     data.last_time = OS::get_time();
@@ -19,9 +25,7 @@ Application::Application(const ApplicationAllocateInfo& alloc_info)
 }
 
 Application::~Application()
-{
-    window.destroy();
-}
+{}
 
 void Application::initialize(const ApplicationInitializeInfo&)
 {
@@ -46,7 +50,7 @@ void Application::handle_event(const Event& e)
     if(e.type == EventType::WindowClose)
     {
         const InputEventWindowClose& close_event = e.get<InputEventWindowClose>();
-        if(close_event.window == window.window_id)
+        if(&close_event.window == &window)
         {
             data.can_tick = false;
             data.window_closed = true;
@@ -121,7 +125,7 @@ void Application::run()
     while(!data.window_closed)
     {
         pre_tick();
-        Display::poll();
+        window.poll();
 
         if(data.can_tick)
         {

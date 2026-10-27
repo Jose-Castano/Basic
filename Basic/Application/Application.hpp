@@ -1,7 +1,6 @@
 #pragma once
 #include <concurrency/job_queue.h>
-#include <display/display.h>
-#include <display/window.h>
+#include <Display/Window.hpp>
 #include <Math/vec2.h>
 
 
@@ -37,8 +36,6 @@ struct Application
         GPU::PhysicalDeviceID selected_physical_device;
 
         JobQueue main_queue;
-
-        Window main_window;
 
         struct
         {

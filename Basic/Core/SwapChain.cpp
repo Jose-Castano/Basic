@@ -1,5 +1,8 @@
 #include "Basic/Core/SwapChain.hpp"
 
+#include <Display/Window.hpp>
+
+
 
 namespace Basic
 {
@@ -118,7 +121,7 @@ void SwapChain::_rebuild()
         swap_chain = GPU::SwapChainID::invalid();
     }
 
-    image_size = Display::window_get_size(window);
+    image_size = window.get_size();
     if(image_size.x == 0 || image_size.y == 0
         || image_size.x < 0 || image_size.y < 0)
     {
@@ -128,7 +131,7 @@ void SwapChain::_rebuild()
     swap_chain = GPU::swap_chain_create(
         device,
         {
-            .surface = Display::window_get_surface(window),
+            .surface = window.get_surface(),
             .present_mode = present_mode,
             .format = surface_format,
             .min_image_count = DefaultMinImageCount,

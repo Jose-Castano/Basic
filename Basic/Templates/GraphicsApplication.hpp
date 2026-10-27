@@ -34,7 +34,7 @@ struct GraphicsApplication : Application
                 .allocator = allocator,
                 .device = render_device.get_device(),
                 .present_queue = render_device.get_present_queue(),
-                .window = window.window_id,
+                .window = window,
                 .surface_format = Basic::SwapChain::DefaultSurfaceFormat,
             }
         )

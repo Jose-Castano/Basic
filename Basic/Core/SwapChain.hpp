@@ -1,6 +1,6 @@
 #pragma once
 #include <Collections/Array.hpp>
-#include <display/display.h>
+#include <Display/Display.hpp>
 #include <gpu/gpu.h>
 
 
@@ -16,7 +16,7 @@ struct SwapChainInfo
     // The prefered queue to present.
     GPU::QueueID present_queue;
     // The target window.
-    Display::WindowID window;
+    Window& window;
     // The target image format.
     GPU::TextureFormat surface_format;
 };
@@ -50,7 +50,7 @@ struct SwapChain
     Mem::Allocator& allocator;
     GPU::DeviceID device;
     GPU::QueueID present_queue;
-    Display::WindowID window;
+    Window& window;
     GPU::TextureFormat surface_format;
     GPU::PresentMode present_mode;
 
